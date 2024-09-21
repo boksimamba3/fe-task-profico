@@ -1,0 +1,24 @@
+.card {
+    flex-direction: column;
+    background-color: var(--color-light);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    display: flex;
+
+    &__image {
+        height: 140px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &__body {
+        padding: 12px;
+        flex: 1 1 0%;
+    }
+
+    &__footer {
+        display: flex;
+        padding: 0px 12px 12px;
+    }
+}

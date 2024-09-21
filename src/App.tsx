@@ -1,10 +1,13 @@
+import React from 'react';
+
 import './App.scss'
-import Icon from './ui/icons'
+import { BusinessIcon, FlashingCircleIcon, HealthIcon, HomeIcon, NewsIcon, ScienceIcon, SearchIcon, SportsIcon, TechnologyIcon, } from './ui/icon/Icon'
+import { Card, CardImage, CardBody, CardFooter } from './ui/card/Card'
+import { Divider } from './ui/divider/Divider'
 
 function App() {
-
   return (
-    <>
+    <React.Fragment>
         <div className="topbar">
             <div className="container">
                 <div className="topbar__inner">
@@ -26,7 +29,7 @@ function App() {
                 </div>
 
                 <div className="search-box">
-                    <Icon.Search className="search-box__icon"/>
+                    <SearchIcon className="search-box__icon"/>
                     <input className="search-box__input" type="text" placeholder="Search News" />
                     <button className="search-box__button">Search</button>
                 </div>
@@ -34,50 +37,50 @@ function App() {
                 <div className="mobile-navigation"></div>
             </header>
 
-            <div className="divider"></div>
+            <Divider />
 
             <div className="content">
                 <nav className="navigation">
                     <ul className="navigation__list">
                         <li className="navigation__item">
                             <a className="navigation__link navigation__link--active" href="#">
-                                <Icon.Home />
+                                <HomeIcon />
                                 <span>Home</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.News />
-                                <span>News</span>
+                                <NewsIcon />
+                                <span>General</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.Business />
+                                <BusinessIcon />
                                 <span>Business</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.Health />
+                                <HealthIcon />
                                 <span>Health</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.Science />
+                                <ScienceIcon />
                                 <span>Science</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.Sports />
+                                <SportsIcon />
                                 <span>Sports</span>
                             </a>
                         </li>
                         <li className="navigation__item">
                             <a className="navigation__link" href="#">
-                                <Icon.Technology />
+                                <TechnologyIcon />
                                 <span>Technology</span>
                             </a>
                         </li>
@@ -89,15 +92,23 @@ function App() {
                     <div className="news__layout">
                         <div className="latest-news">
                             <div className="latest-news__header">
-                                <Icon.FlashingCircle className="latest-news__indicator" />
+                                <FlashingCircleIcon className="latest-news__indicator" />
                                 <h2 className="latest-news__title">Latest news</h2>
                             </div>
                             <div className="latest-news__body">
                                 {Array.from({ length: 40 }).map((_, index) => (
-                                    <div key={index} className="latest-news__article">
-                                        <span>14:30</span>
-                                        <p>6 Powerful Tips To Creating Testimonials That Sell Your Products</p>
-                                    </div>
+                                    <React.Fragment key={index}>
+                                        <Card>
+                                            <CardBody>
+                                                <div className="latest-news__article">
+                                                    <span>14:30</span>
+                                                    <p>6 Powerful Tips To Creating Testimonials That Sell Your Products</p>
+                                                </div>
+                                            </CardBody>
+                                        </Card>
+                                        <Divider />
+                                    </React.Fragment>
+
                                 ))}
                             </div>
                             <div className="latest-news__footer">
@@ -106,28 +117,23 @@ function App() {
                         </div>
                         {
                             Array.from({ length: 10 }).map((_, index) => (
-                                <div key={index} className="article">
-                                    <div className="article__image">
-                                        <img src="https://ip.index.hr/remote/bucket.index.hr/b/index/9da1b2ef-dd33-4855-9093-0586b4f7ea4c.jpg?width=765&height=402" alt="Article Image" />
-                                    </div>
-                                    <div className="article__content">
-                                        <div>
-                                            <span className="article__category">Category</span>
-                                            <h3 className="article__title">News Title</h3>
-                                        </div>
-                                        <div className="article__author">
-                                            <p>John Doe</p>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <Card key={index}>
+                                    <CardImage src="https://ip.index.hr/remote/bucket.index.hr/b/index/9da1b2ef-dd33-4855-9093-0586b4f7ea4c.jpg?width=765&height=402" alt="Article Image" />
+                                    <CardBody>
+                                        <span className="article__category">Category</span>
+                                        <h3 className="article__title">News Title</h3>
+                                    </CardBody>
+                                    <CardFooter>
+                                        <p className="article__author">John Doe</p>
+                                    </CardFooter>
+                                </Card>
                             ))
                         }
                     </div>
                 </main>
             </div>
         </div>
-    </>
+    </React.Fragment>
   )
 }
 

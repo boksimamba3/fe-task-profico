@@ -167,14 +167,10 @@
     &__body {
         flex: 1;
         overflow-y: auto;
-        margin-top: 12px;
-        padding: 0 16px;
+        padding: 0 4px;
     }
 
     &__article {
-        padding-bottom: 14px;
-        border-bottom: 1px solid #F4F5F8;
-
         & > span {
             font-size: 10px;
             font-weight: 600;
@@ -241,12 +237,13 @@
     }
 
     &__title {
+        font-size: 16px;
         font-weight: 400;
     }
 
     &__author {
         font-size: 12px;
-        color: var(--color-dark-2)
+        color: var(--color-dark-2);
     }
 
 }
