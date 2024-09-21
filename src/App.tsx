@@ -4,6 +4,7 @@ import './App.scss'
 import { BusinessIcon, FlashingCircleIcon, HealthIcon, HomeIcon, NewsIcon, ScienceIcon, SearchIcon, SportsIcon, TechnologyIcon, } from './ui/icon/Icon'
 import { Card, CardImage, CardBody, CardFooter } from './ui/card/Card'
 import { Divider } from './ui/divider/Divider'
+import { Button } from './ui/button/Button';
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
                     <p className="topbar__callout">Make MyNews your homepage</p>
                     <p className="topbar__info">Every day discover what's trending on the internet!</p>
                     <div className="topbar__actions">
-                        <button className="topbar__ignore">No, thanks</button>
-                        <button className="topbar__confirm">Get</button>
+                        <Button color="light" variant="text">No, thanks</Button>
+                        <Button variant="contained" color="light">GET</Button>
                     </div>
                 </div>
             </div>
@@ -31,7 +32,7 @@ function App() {
                 <div className="search-box">
                     <SearchIcon className="search-box__icon"/>
                     <input className="search-box__input" type="text" placeholder="Search News" />
-                    <button className="search-box__button">Search</button>
+                    <Button color="primary">SEARCH</Button>
                 </div>
 
                 <div className="mobile-navigation"></div>
