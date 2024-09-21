@@ -1,46 +1,59 @@
 // css reset
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
-img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
-input, button, textarea, select {
-    font: inherit;
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
 // define css variable
 :root {
-    --color-primary: #BB1E1E;
-    --color-secondary: #1E71BB;
-    --color-dark: #000000;
-    --color-dark-2: #1D1D1B;
-    --color-light: #FFFFFF;
+  --color-primary: #bb1e1e;
+  --color-secondary: #1e71bb;
+  --color-dark: #000000;
+  --color-dark-2: #1d1d1b;
+  --color-light: #ffffff;
 
-    --box-shadow: 0px 1px 2px -1px #C8CAD1;
+  --box-shadow: 0px 1px 2px -1px #c8cad1;
 
-    --container-max-width: 1140px;
+  --container-max-width: 1140px;
 
-    font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
+  font-family: Inter, sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
 }
 
 @supports (font-variation-settings: normal) {
-    :root { font-family: InterVariable, sans-serif; }
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
 }
 
 body {
-    font-size: 16px;
-    background: #F4F5F8;
+  font-size: 16px;
+  background: #f4f5f8;
 }

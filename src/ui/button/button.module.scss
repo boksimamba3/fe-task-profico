@@ -6,38 +6,38 @@ $button-colors: (
 );
 
 @mixin button-appearance-colors() {
-    @each $colorName, $color in $button-colors {
-        .button--text.button--#{$colorName}{
-            background-color: transparent;
-            color: $color;
-        }
+  @each $colorName, $color in $button-colors {
+    .button--text.button--#{$colorName} {
+      background-color: transparent;
+      color: $color;
+    }
 
-        .button--contained.button--#{$colorName} {
-            background-color: $color;
-            @if ($colorName == light) {
-                color: var(--color-dark);
-            } @else {
-                color: var(--color-light);
-            }
-        }
+    .button--contained.button--#{$colorName} {
+      background-color: $color;
+      @if ($colorName == light) {
+        color: var(--color-dark);
+      } @else {
+        color: var(--color-light);
+      }
     }
   }
+}
 
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    min-width: 70px;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 700;
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 70px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
 }
 
 @include button-appearance-colors();

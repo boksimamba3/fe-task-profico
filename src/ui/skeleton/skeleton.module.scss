@@ -1,25 +1,24 @@
 .skeleton {
-    --skeleton-start-color: #EDF2F7;
-    --skeleton-end-color: #CBD5E0;
-    opacity: 0.5;
-    box-shadow: var(--box-shadow);
-    cursor: default;
-    pointer-events: none;
-    user-select: none;
-    height: 20px;
-    border-color: var(--skeleton-end-color);
-    border-radius: 8px;
-    animation: 0.8s linear 0s infinite alternate none running skeleton-animation;
+  --skeleton-start-color: #edf2f7;
+  --skeleton-end-color: #cbd5e0;
+  opacity: 0.5;
+  box-shadow: var(--box-shadow);
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  height: 20px;
+  border-color: var(--skeleton-end-color);
+  border-radius: 8px;
+  animation: 0.8s linear 0s infinite alternate none running skeleton-animation;
 }
 
 @keyframes skeleton-animation {
-    0% {
-        border-color: var(--skeleton-start-color);
-        background-color: var(--skeleton-start-color);
-    }
-    100% {
-        border-color: var(--skeleton-end-color);
-        background-color: var(--skeleton-end-color);
-    }
-
+  0% {
+    border-color: var(--skeleton-start-color);
+    background-color: var(--skeleton-start-color);
+  }
+  100% {
+    border-color: var(--skeleton-end-color);
+    background-color: var(--skeleton-end-color);
+  }
 }
