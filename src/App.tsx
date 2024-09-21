@@ -15,6 +15,7 @@ import {
 import { Card, CardImage, CardBody, CardFooter } from "./ui/card/Card";
 import { Divider } from "./ui/divider/Divider";
 import { Button } from "./ui/button/Button";
+import { Skeleton } from "./ui/skeleton/Skeleton";
 
 function App() {
   return (
@@ -114,12 +115,13 @@ function App() {
                 <div className="latest-news__body">
                   {Array.from({ length: 40 }).map((_, index) => (
                     <React.Fragment key={index}>
-                      <Card>
+                      <Skeleton key={index} style={{ height: "100px", marginTop: 16 }}></Skeleton>
+                      {/* <Card>
                         <CardBody>
                           <span className="text-xs text-secondary font-bold">14:30</span>
                           <p className="font-medium">6 Powerful Tips To Creating Testimonials That Sell Your Products</p>
                         </CardBody>
-                      </Card>
+                      </Card> */}
                       <Divider className="text-light-2" />
                     </React.Fragment>
                   ))}
@@ -132,7 +134,8 @@ function App() {
               </div>
 
               {Array.from({ length: 10 }).map((_, index) => (
-                <Card key={index}>
+                <Skeleton key={index} style={{ height: "100%" }}></Skeleton>
+                /*  <Card key={index}>
                   <CardImage
                     src="https://ip.index.hr/remote/bucket.index.hr/b/index/9da1b2ef-dd33-4855-9093-0586b4f7ea4c.jpg?width=765&height=402"
                     alt="Article Image"
@@ -144,7 +147,7 @@ function App() {
                   <CardFooter>
                     <p className="text-sm text-dark-2">John Doe</p>
                   </CardFooter>
-                </Card>
+                </Card> */
               ))}
             </div>
           </main>
