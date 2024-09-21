@@ -7,7 +7,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: "text" | "contained";
 }
 
-export function Button({ children, className, color = "primary", variant = "contained", ...props }: ButtonProps) {
+export function Button({ children, className = "", color = "primary", variant = "contained", ...props }: ButtonProps) {
   const colorClass = color ? classes[`button--${color}`] : "";
   const variantClass = variant ? classes[`button--${variant}`] : "";
 

@@ -1,0 +1,11 @@
+@use "sass:math";
+
+@mixin opacity($value) {
+  .opacity-#{$value} {
+    opacity: math.div($value, 100);
+  }
+}
+
+@for $i from 0 through 10 {
+  @include opacity($i * 10);
+}

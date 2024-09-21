@@ -22,9 +22,9 @@ function App() {
       <div className="topbar">
         <div className="container">
           <div className="topbar__inner">
-            <p className="topbar__callout">Make MyNews your homepage</p>
-            <p className="topbar__info">Every day discover what's trending on the internet!</p>
-            <div className="topbar__actions">
+            <p className="text-light font-bold">Make MyNews your homepage</p>
+            <p className="text-light text-md ml-11">Every day discover what's trending on the internet!</p>
+            <div className="ml-auto">
               <Button color="light" variant="text">
                 No, thanks
               </Button>
@@ -39,8 +39,8 @@ function App() {
       <div className="container">
         <header className="header">
           <div>
-            <h1 className="title">
-              <span className="title--red">My</span>News
+            <h1 className="text-xxl font-black">
+              <span className="text-primary">My</span>News
             </h1>
           </div>
 
@@ -53,9 +53,9 @@ function App() {
           <div className="mobile-navigation"></div>
         </header>
 
-        <Divider />
+        <Divider className="text-gray mt-7 opacity-10" />
 
-        <div className="content">
+        <div className="content mt-6 pb-15">
           <nav className="navigation">
             <ul className="navigation__list">
               <li className="navigation__item">
@@ -104,32 +104,33 @@ function App() {
           </nav>
 
           <main className="news">
-            <h2 className="news__category">News</h2>
+            <h2 className="text-lg font-semibold">News</h2>
             <div className="news__layout">
               <div className="latest-news">
                 <div className="latest-news__header">
-                  <FlashingCircleIcon className="latest-news__indicator" />
-                  <h2 className="latest-news__title">Latest news</h2>
+                  <FlashingCircleIcon className="text-primary" />
+                  <h2 className="text-default font-medium ml-3">Latest news</h2>
                 </div>
                 <div className="latest-news__body">
                   {Array.from({ length: 40 }).map((_, index) => (
                     <React.Fragment key={index}>
                       <Card>
                         <CardBody>
-                          <div className="latest-news__article">
-                            <span>14:30</span>
-                            <p>6 Powerful Tips To Creating Testimonials That Sell Your Products</p>
-                          </div>
+                          <span className="text-xs text-secondary font-bold">14:30</span>
+                          <p className="font-medium">6 Powerful Tips To Creating Testimonials That Sell Your Products</p>
                         </CardBody>
                       </Card>
-                      <Divider />
+                      <Divider className="text-light-2" />
                     </React.Fragment>
                   ))}
                 </div>
-                <div className="latest-news__footer">
-                  <a href="#">See All News</a>
+                <div className="latest-news__footer p-4">
+                  <a href="#" className="text-secondary text-md font-medium">
+                    See All News
+                  </a>
                 </div>
               </div>
+
               {Array.from({ length: 10 }).map((_, index) => (
                 <Card key={index}>
                   <CardImage
@@ -137,11 +138,11 @@ function App() {
                     alt="Article Image"
                   />
                   <CardBody>
-                    <span className="article__category">Category</span>
-                    <h3 className="article__title">News Title</h3>
+                    <span className="text-xs font-bold text-secondary">Category</span>
+                    <h3 className="text-default font-medium">6 Powerful Tips To Creating Testimonials That Sell Your Products</h3>
                   </CardBody>
                   <CardFooter>
-                    <p className="article__author">John Doe</p>
+                    <p className="text-sm text-dark-2">John Doe</p>
                   </CardFooter>
                 </Card>
               ))}

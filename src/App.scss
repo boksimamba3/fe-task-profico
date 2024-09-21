@@ -11,47 +11,12 @@
     align-items: center;
     height: 60px;
   }
-
-  &__callout {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--color-light);
-  }
-
-  &__info {
-    font-size: 14px;
-    color: var(--color-light);
-    margin-left: 48px;
-  }
-
-  &__actions {
-    margin-left: auto;
-  }
-
-  &__ignore {
-    background-color: transparent;
-    text-transform: none;
-  }
-
-  &__confirm {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-  }
 }
 
 .header {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 725px) 1fr;
   margin-top: 36px;
-}
-
-.title {
-  font-weight: 900;
-  font-size: 32px;
-
-  &--red {
-    color: var(--color-primary);
-  }
 }
 
 .search-box {
@@ -82,18 +47,10 @@
   }
 }
 
-.divider {
-  height: 1px;
-  background-color: #979797;
-  opacity: 0.1;
-  margin-top: 28px;
-}
-
 .content {
   display: flex;
   gap: 25px;
   padding-bottom: 60px;
-  margin-top: 24px;
 }
 
 .navigation {
@@ -136,15 +93,10 @@
 .news {
   flex: 1;
 
-  &__category {
-    font-weight: 600;
-    font-size: 18px;
-  }
-
   &__layout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 252px 252px 252px;
+    grid-template-rows: 262px 262px 262px;
     gap: 22px 22px;
     margin-top: 16px;
   }
@@ -170,39 +122,8 @@
     padding: 0 4px;
   }
 
-  &__article {
-    & > span {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--color-secondary);
-    }
-
-    & > p {
-      font-weight: 400;
-    }
-  }
-
-  &__title {
-    font-weight: 400;
-    margin-left: 10px;
-  }
-
-  &__indicator {
-    display: inline-block;
-    color: var(--color-primary);
-  }
-
   &__footer {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--color-secondary);
     border-top: 1px solid #f4f5f8;
-    padding: 16px;
-
-    & > a {
-      text-decoration: none;
-      color: var(--color-secondary);
-    }
   }
 }
 
@@ -212,37 +133,11 @@
   box-shadow: var(--box-shadow);
   overflow: hidden;
 
-  &__image {
-    height: 140px;
-
-    & img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__category {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--color-secondary);
-  }
-
   &__content {
     height: 112px;
     padding: 12px 12px 16px 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  &__title {
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  &__author {
-    font-size: 12px;
-    color: var(--color-dark-2);
   }
 }

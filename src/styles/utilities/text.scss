@@ -1,0 +1,40 @@
+$colors: (
+  "primary": var(--color-primary),
+  "secondary": var(--color-secondary),
+  "light": var(--color-light),
+  "light-2": var(--color-light-2),
+  "dark": var(--color-dark),
+  "dark-2": var(--color-dark-2),
+  "gray": var(--color-gray),
+);
+
+$font-sizes: (
+  "xs": 10px,
+  "sm": 12px,
+  "md": 14px,
+  "default": 16px,
+  "lg": 18px,
+  "xl": 24px,
+  "xxl": 32px,
+);
+
+$font-weights: (
+  "normal": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+  "extrabold": 800,
+  "black": 900,
+);
+
+@mixin generate($property, $prefix, $map) {
+  @each $name, $value in $map {
+    .#{$prefix}-#{$name} {
+      #{$property}: #{$value};
+    }
+  }
+}
+
+@include generate(color, text, $colors);
+@include generate(font-size, text, $font-sizes);
+@include generate(font-weight, font, $font-weights);

@@ -1,0 +1,31 @@
+@mixin generate-spacing($property, $prefix) {
+  @for $i from 0 through 16 {
+    .#{$prefix}-#{$i} {
+      #{$property}: #{$i * 4}px;
+    }
+  }
+
+  .#{$prefix}-auto {
+    #{$property}: auto;
+  }
+}
+
+@include generate-spacing(margin, m);
+@include generate-spacing(margin-top, mt);
+@include generate-spacing(margin-right, mr);
+@include generate-spacing(margin-bottom, mb);
+@include generate-spacing(margin-left, ml);
+@include generate-spacing(margin-left, mx);
+@include generate-spacing(margin-right, mx);
+@include generate-spacing(margin-top, my);
+@include generate-spacing(margin-bottom, my);
+
+@include generate-spacing(padding, p);
+@include generate-spacing(padding-top, pt);
+@include generate-spacing(padding-right, pr);
+@include generate-spacing(padding-bottom, pb);
+@include generate-spacing(padding-left, pl);
+@include generate-spacing(padding-left, px);
+@include generate-spacing(padding-right, px);
+@include generate-spacing(padding-top, py);
+@include generate-spacing(padding-bottom, py);

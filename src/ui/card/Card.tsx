@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 
 import classes from "./card.module.scss";
 
-export function Card({ children, className, ...props }: ComponentPropsWithoutRef<"div">) {
+export function Card({ children, className = "", ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div {...props} className={`${classes.card} ${className}`}>
       {children}
@@ -10,11 +10,11 @@ export function Card({ children, className, ...props }: ComponentPropsWithoutRef
   );
 }
 
-export function CardImage({ className, ...props }: ComponentPropsWithoutRef<"img">) {
+export function CardImage({ className = "", ...props }: ComponentPropsWithoutRef<"img">) {
   return <img {...props} className={`${classes.card__image} ${className}`} />;
 }
 
-export function CardBody({ children, className, ...props }: ComponentPropsWithoutRef<"div">) {
+export function CardBody({ children, className = "", ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div {...props} className={`${classes.card__body} ${className}`}>
       {children}
@@ -22,7 +22,7 @@ export function CardBody({ children, className, ...props }: ComponentPropsWithou
   );
 }
 
-export function CardFooter({ children, className, ...props }: ComponentPropsWithoutRef<"div">) {
+export function CardFooter({ children, className = "", ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div {...props} className={`${classes.card__footer} ${className}`}>
       {children}
