@@ -38,3 +38,17 @@ $font-weights: (
 @include generate(color, text, $colors);
 @include generate(font-size, text, $font-sizes);
 @include generate(font-weight, font, $font-weights);
+
+// generate class to truncate text to max 2 lines and show elipses
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}

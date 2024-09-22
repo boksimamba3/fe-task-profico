@@ -1,0 +1,79 @@
+export interface NewsAPIRequestBase {
+  q?: string;
+  pageSize?: number;
+  page?: number;
+  language?: string;
+}
+
+export interface NewsAPIRequestTopHeadlines extends NewsAPIRequestBase {
+  category: string;
+}
+
+export interface NewsAPIRequestEverything extends NewsAPIRequestBase {
+  searchIn?: "title" | "description" | "content";
+  sortBy: "relevancy" | "popularity" | "publishedAt";
+}
+
+export interface NewsAPIResponse {
+  status: string;
+  totalResults: number;
+  articles: NewsAPIArticle[];
+}
+
+export interface NewsAPIArticle {
+  author?: string;
+  title: string;
+  urlToImage?: string;
+  publishedAt: string;
+}
+
+export class NewsAPIError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = `NewsAPIError`;
+  }
+}
+
+class NewsAPI {
+  private readonly apiKey = "ea88e8a9ed6e49ceba5c1288dddd5986";
+
+  async topHeadlines(request: NewsAPIRequestTopHeadlines, requestInit?: RequestInit) {
+    const { category, language = "en", pageSize = 30, page = 1 } = request;
+    const url = new URL("https://newsapi.org/v2/top-headlines");
+    url.searchParams.append("language", language);
+    url.searchParams.append("category", category);
+    url.searchParams.append("pageSize", pageSize.toString());
+    url.searchParams.append("page", page.toString());
+    url.searchParams.append("apiKey", this.apiKey);
+
+    const response = await fetch(url.toString(), requestInit);
+
+    if (!response.ok) {
+      throw new NewsAPIError(`Failed to fetch news for top headlines`);
+    }
+
+    return response.json();
+  }
+
+  async everything(request: NewsAPIRequestEverything, requestInit?: RequestInit) {
+    const { q, language = "en", pageSize = 30, page = 1, searchIn = "title", sortBy = "relevancy" } = request;
+    const url = new URL("https://newsapi.org/v2/everything");
+    url.searchParams.append("language", language);
+    url.searchParams.append("q", q ?? "");
+    url.searchParams.append("searchIn", searchIn);
+    url.searchParams.append("pageSize", pageSize.toString());
+    url.searchParams.append("page", page.toString());
+    url.searchParams.append("sortBy", sortBy);
+    url.searchParams.append("apiKey", this.apiKey);
+
+    const response = await fetch(url.toString(), requestInit);
+
+    if (!response.ok) {
+      throw new NewsAPIError(`Failed to fetch news for everything`);
+    }
+
+    return response.json();
+  }
+}
+
+export default new NewsAPI();
