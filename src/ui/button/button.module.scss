@@ -5,7 +5,7 @@ $button-colors: (
   "dark": var(--color-dark),
 );
 
-@mixin button-appearance-colors() {
+@mixin generate-button-appearances() {
   @each $colorName, $color in $button-colors {
     .button--text.button--#{$colorName} {
       background-color: transparent;
@@ -40,4 +40,4 @@ $button-colors: (
   cursor: pointer;
 }
 
-@include button-appearance-colors();
+@include generate-button-appearances();
