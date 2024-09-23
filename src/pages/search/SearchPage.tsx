@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Await, useLoaderData, useNavigation } from "react-router-dom";
 
-import { Skeleton } from "../ui/skeleton/Skeleton";
-import { Card, CardBody, CardFooter, CardImage } from "../ui/card/Card";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
+import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 
 function SearchSkeleton() {
   return (
@@ -33,7 +33,7 @@ export default function SearchPage() {
           {({ articles }) => (
             <React.Fragment>
               {articles.map(({ title, author, urlToImage }, index) => (
-                <Card key={index}>
+                <Card key={index} className="fade-in">
                   <CardImage src={urlToImage ?? "https://placehold.co/600x400?text=No+image"} alt="Article Image" />
                   <CardBody>
                     <h3 className="text-default font-medium text-truncate">{title}</h3>

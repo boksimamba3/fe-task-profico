@@ -2,18 +2,10 @@ import React, { useEffect } from "react";
 import { NavLink, Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import "./App.scss";
-import {
-  BusinessIcon,
-  HealthIcon,
-  HomeIcon,
-  NewsIcon,
-  ScienceIcon,
-  SearchIcon,
-  SportsIcon,
-  TechnologyIcon,
-} from "./ui/icon/Icon";
+import { SearchIcon } from "./ui/icon/Icon";
 import { Divider } from "./ui/divider/Divider";
 import { Button } from "./ui/button/Button";
+import { navigation } from "./navigation";
 
 function applyNavLinkActiveClass({ isActive }: { isActive: boolean }) {
   return ["navigation__link", isActive ? "navigation__link--active" : ""].join(" ");
@@ -93,51 +85,16 @@ export default function App() {
         <div className="content mt-6 pb-15">
           <nav className="navigation">
             <ul className="navigation__list">
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/">
-                  <HomeIcon />
-                  <span>Home</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/general">
-                  <NewsIcon />
-                  <span>General</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/business">
-                  <BusinessIcon />
-                  <span>Business</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/health">
-                  <HealthIcon />
-                  <span>Health</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/science">
-                  <ScienceIcon />
-                  <span>Science</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/sports">
-                  <SportsIcon />
-                  <span>Sports</span>
-                </NavLink>
-              </li>
-              <li className="navigation__item">
-                <NavLink className={applyNavLinkActiveClass} to="/technology">
-                  <TechnologyIcon />
-                  <span>Technology</span>
-                </NavLink>
-              </li>
+              {navigation.map(({ name, Icon, path }, index) => (
+                <li key={index} className="navigation__item">
+                  <NavLink className={applyNavLinkActiveClass} to={path}>
+                    <Icon />
+                    <span>{name}</span>
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </nav>
-
           <Outlet />
         </div>
       </div>

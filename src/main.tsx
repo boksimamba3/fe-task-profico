@@ -4,14 +4,12 @@ import { createBrowserRouter, defer, RouteObject, RouterProvider } from "react-r
 
 import "./index.scss";
 import App from "./App.tsx";
-import HomePage from "./pages/HomePage.tsx";
-import NewsCategoryPage from "./pages/NewsCategoryPage.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
+import HomePage from "./pages/home/HomePage.tsx";
+import NewsCategoryPage from "./pages/news-category/NewsCategoryPage.tsx";
+import ErrorPage from "./pages/error/ErrorPage.tsx";
+import SearchPage from "./pages/search/SearchPage.tsx";
 import NewsAPI from "./api/news-api.ts";
-import SearchPage from "./pages/SearchPage.tsx";
-
-// TODO: move to navigation
-const NEWS_CATEGORIES = ["general", "business", "health", "science", "sports", "technology"];
+import { categoriesNavigation } from "./navigation.ts";
 
 const router = createBrowserRouter([
   {
@@ -34,20 +32,20 @@ const router = createBrowserRouter([
             {
               signal: request.signal,
             },
-          ).then((r) => new Promise((resolve) => setTimeout(() => resolve(r), 3000)));
+          ).then((response) => new Promise((resolve) => setTimeout(() => resolve(response), 1000)));
 
           return defer({ response });
         },
         errorElement: <ErrorPage />,
       },
-      ...NEWS_CATEGORIES.map(
+      ...categoriesNavigation.map(
         (category): RouteObject => ({
-          path: category,
+          path: category.name,
           element: <NewsCategoryPage />,
-          handle: { category },
+          handle: { category: category.name },
           loader: function categoryLoader({ request }) {
             const response = NewsAPI.topHeadlines(
-              { category },
+              { category: category.name.toLowerCase() },
               {
                 signal: request.signal,
               },

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { FlashingCircleIcon } from "../ui/icon/Icon";
-import { Skeleton } from "../ui/skeleton/Skeleton";
-import { Divider } from "../ui/divider/Divider";
-import { Card, CardBody, CardFooter, CardImage } from "../ui/card/Card";
+import { FlashingCircleIcon } from "../../ui/icon/Icon";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
+import { Divider } from "../../ui/divider/Divider";
+import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 
 export default function HomePage() {
   return (
