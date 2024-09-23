@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
-import { NavLink, Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
-import "./App.scss";
-import { SearchIcon } from "./ui/icon/Icon";
-import { Divider } from "./ui/divider/Divider";
-import { Button } from "./ui/button/Button";
-import { navigation } from "./navigation";
+import { Navigation } from "./ui/Navigation";
+import { Button } from "../../ui/button/Button";
+import { SearchIcon } from "../../ui/icon/Icon";
+import { Divider } from "../../ui/divider/Divider";
+import { TopBar } from "./ui/TopBar";
 
-function applyNavLinkActiveClass({ isActive }: { isActive: boolean }) {
-  return ["navigation__link", isActive ? "navigation__link--active" : ""].join(" ");
-}
-
-export default function App() {
+export default function RootPage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -38,23 +34,7 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <div className="topbar">
-        <div className="container">
-          <div className="topbar__inner">
-            <p className="text-light font-bold">Make MyNews your homepage</p>
-            <p className="text-light text-md ml-11">Every day discover what's trending on the internet!</p>
-            <div className="ml-auto">
-              <Button color="light" variant="text">
-                No, thanks
-              </Button>
-              <Button variant="contained" color="light">
-                GET
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <TopBar />
       <div className="container">
         <header className="header">
           <div>
@@ -83,18 +63,7 @@ export default function App() {
         <Divider className="text-gray mt-7 opacity-10" />
 
         <div className="content mt-6 pb-15">
-          <nav className="navigation">
-            <ul className="navigation__list">
-              {navigation.map(({ name, Icon, path }, index) => (
-                <li key={index} className="navigation__item">
-                  <NavLink className={applyNavLinkActiveClass} to={path}>
-                    <Icon />
-                    <span>{name}</span>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <Navigation />
           <Outlet />
         </div>
       </div>
