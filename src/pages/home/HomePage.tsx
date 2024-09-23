@@ -3,13 +3,25 @@ import { Await, Link, useLoaderData } from "react-router-dom";
 
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 import { LatestNews } from "./ui/LatestNews";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
+
+function HomeSkeleton() {
+  return (
+    <section className="news-category mb-10">
+      {Array.from({ length: 12 }, (_, index) => (
+        <Skeleton key={index} style={{ height: "100%" }} />
+      ))}
+      <Skeleton className="latest-news" style={{ height: "100%" }} />
+    </section>
+  );
+}
 
 export default function HomePage() {
   const { news } = useLoaderData();
 
   return (
     <main className="news">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={news}>
           {([newsCategory, latestNews]) => (
             <React.Fragment>

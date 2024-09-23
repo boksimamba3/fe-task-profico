@@ -20,10 +20,11 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
 
   const [trackerRef, rootRef, isTrackerVisible] = useIntersectionObserver({ rootMargin: "150px 0px 0px 0px" });
 
+  const shouldLoadMore = isTrackerVisible && page * pageSize < totalItems && !loading;
+
   useEffect(() => {
     async function loadMore() {
-      const hasNextPage = page * pageSize < totalItems;
-      if (isTrackerVisible && hasNextPage && !loading) {
+      if (shouldLoadMore) {
         try {
           setLoading(true);
           const response = await NewsAPI.topHeadlines({ page: page + 1, pageSize });
@@ -37,7 +38,7 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
     }
 
     loadMore();
-  }, [isTrackerVisible, page, pageSize, totalItems]);
+  }, [shouldLoadMore, page, pageSize]);
 
   const hasNextPage = page * pageSize < totalItems;
 
