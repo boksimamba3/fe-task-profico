@@ -23,7 +23,7 @@ function homeLoader({ request }: { request: Request }) {
     ),
   );
 
-  const latest = NewsAPI.topHeadlines({ pageSize: 20 }, { signal: request.signal });
+  const latest = NewsAPI.topHeadlines({ pageSize: 10 }, { signal: request.signal });
 
   const news = Promise.all([categories, latest]);
 

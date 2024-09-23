@@ -33,7 +33,9 @@ export default function HomePage() {
                         </CardFooter>
                       </Card>
                     ))}
-                    {category === "general" ? <LatestNews articles={latestNews.articles} /> : null}
+                    {category === "general" ? (
+                      <LatestNews initialArticles={latestNews.articles} totalItems={latestNews.totalResults} />
+                    ) : null}
                   </section>
                 </React.Fragment>
               ))}
