@@ -1,5 +1,5 @@
 export interface NewsAPIRequestBase {
-  q?: string;
+  q?: string | null;
   pageSize?: number;
   page?: number;
   language?: string;
@@ -11,7 +11,7 @@ export interface NewsAPIRequestTopHeadlines extends NewsAPIRequestBase {
 
 export interface NewsAPIRequestEverything extends NewsAPIRequestBase {
   searchIn?: "title" | "description" | "content";
-  sortBy: "relevancy" | "popularity" | "publishedAt";
+  sortBy?: "relevancy" | "popularity" | "publishedAt";
 }
 
 export interface NewsAPIResponse {
@@ -35,9 +35,9 @@ export class NewsAPIError extends Error {
 }
 
 class NewsAPI {
-  private readonly apiKey = "ea88e8a9ed6e49ceba5c1288dddd5986";
+  private readonly apiKey = "4c269f36c81747c29c913fd196d19ffb";
 
-  async topHeadlines(request: NewsAPIRequestTopHeadlines, requestInit?: RequestInit) {
+  async topHeadlines(request: NewsAPIRequestTopHeadlines, requestInit?: RequestInit): Promise<NewsAPIResponse> {
     const { category, language = "en", pageSize = 30, page = 1 } = request;
     const url = new URL("https://newsapi.org/v2/top-headlines");
     url.searchParams.append("language", language);
@@ -55,16 +55,19 @@ class NewsAPI {
     return response.json();
   }
 
-  async everything(request: NewsAPIRequestEverything, requestInit?: RequestInit) {
-    const { q, language = "en", pageSize = 30, page = 1, searchIn = "title", sortBy = "relevancy" } = request;
+  async everything(request: NewsAPIRequestEverything, requestInit?: RequestInit): Promise<NewsAPIResponse> {
+    const { q, language = "en", pageSize = 30, page = 1, searchIn = "title", sortBy = "publishedAt" } = request;
     const url = new URL("https://newsapi.org/v2/everything");
     url.searchParams.append("language", language);
-    url.searchParams.append("q", q ?? "");
-    url.searchParams.append("searchIn", searchIn);
     url.searchParams.append("pageSize", pageSize.toString());
     url.searchParams.append("page", page.toString());
     url.searchParams.append("sortBy", sortBy);
     url.searchParams.append("apiKey", this.apiKey);
+
+    if (q) {
+      url.searchParams.append("q", q);
+      url.searchParams.append("searchIn", searchIn);
+    }
 
     const response = await fetch(url.toString(), requestInit);
 

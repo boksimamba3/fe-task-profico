@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import "./App.scss";
 import {
@@ -19,7 +19,31 @@ function applyNavLinkActiveClass({ isActive }: { isActive: boolean }) {
   return ["navigation__link", isActive ? "navigation__link--active" : ""].join(" ");
 }
 
-function App() {
+export default function App() {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const [query, setQuery] = React.useState(searchParams.get("q") || "");
+
+  useEffect(() => {
+    if (location.pathname !== "/search") {
+      setQuery("");
+    }
+  }, [location]);
+
+  function onQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setQuery(event.target.value);
+  }
+
+  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!query) return;
+
+    navigate(`/search?q=${query}`);
+  }
+
   return (
     <React.Fragment>
       <div className="topbar">
@@ -47,11 +71,19 @@ function App() {
             </h1>
           </div>
 
-          <div className="search-box">
-            <SearchIcon className="search-box__icon" />
-            <input className="search-box__input" type="text" placeholder="Search News" />
-            <Button color="primary">SEARCH</Button>
-          </div>
+          <form onSubmit={handleSearch}>
+            <div className="search-box">
+              <SearchIcon className="search-box__icon" />
+              <input
+                className="search-box__input"
+                type="search"
+                value={query}
+                onChange={onQueryChange}
+                placeholder="Search News"
+              />
+              <Button color="primary">SEARCH</Button>
+            </div>
+          </form>
 
           <div className="mobile-navigation"></div>
         </header>
@@ -112,5 +144,3 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;
