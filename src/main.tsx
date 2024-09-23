@@ -1,8 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, defer, RouteObject, RouterProvider } from "react-router-dom";
-
-import "./index.scss";
+import { createBrowserRouter, defer, RouterProvider } from "react-router-dom";
 
 import RootPage from "./pages/root/Root.tsx";
 import HomePage from "./pages/home/HomePage.tsx";
@@ -11,19 +9,51 @@ import ErrorPage from "./pages/error/ErrorPage.tsx";
 import SearchPage from "./pages/search/SearchPage.tsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.tsx";
 import NewsAPI from "./api/news-api.ts";
-import { categoriesNavigation } from "./navigation.ts";
+
+import "./index.scss";
+
+function homeLoader({ request }: { request: Request }) {
+  const availableCategories = ["general", "business", "health", "science", "sports", "technology"];
+
+  const categories = Promise.all(
+    availableCategories.map((category) =>
+      NewsAPI.topHeadlines({ category, pageSize: category === "general" ? 7 : 9 }, { signal: request.signal }).then(
+        (data) => [category, data],
+      ),
+    ),
+  );
+
+  const latest = NewsAPI.topHeadlines({ pageSize: 20 }, { signal: request.signal });
+
+  const news = Promise.all([categories, latest]);
+
+  return defer({ news });
+}
 
 function newsCategoryLoader(category: string) {
   return function categoryLoader({ request }: { request: Request }) {
-    const response = NewsAPI.topHeadlines(
+    const newsCategory = NewsAPI.topHeadlines(
       { category: category },
       {
         signal: request.signal,
       },
     );
 
-    return defer({ response });
+    return defer({ newsCategory });
   };
+}
+
+function searchLoader({ request }: { request: Request }) {
+  const q = new URL(request.url).searchParams.get("q");
+
+  const searchResults = NewsAPI.everything(
+    { q, searchIn: "title", sortBy: "relevancy" },
+    {
+      signal: request.signal,
+    },
+  );
+
+  return defer({ searchResults });
 }
 
 const router = createBrowserRouter([
@@ -34,23 +64,13 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <HomePage />,
+        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
       {
         path: "search",
         element: <SearchPage />,
-        loader: function searchLoader({ request }) {
-          const q = new URL(request.url).searchParams.get("q");
-
-          const response = NewsAPI.everything(
-            { q, searchIn: "title", sortBy: "relevancy" },
-            {
-              signal: request.signal,
-            },
-          );
-
-          return defer({ response });
-        },
+        loader: searchLoader,
         errorElement: <ErrorPage />,
       },
       {

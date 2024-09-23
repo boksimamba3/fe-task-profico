@@ -15,7 +15,7 @@ function NewsCategorySkeleton() {
 
 export default function NewsCategoryPage() {
   const matches = useMatches();
-  const { response } = useLoaderData();
+  const { newsCategory } = useLoaderData();
 
   const match = matches.find((match): match is UIMatch<unknown, { category: string }> =>
     Boolean(match.handle && typeof match.handle === "object" && "category" in match.handle),
@@ -28,7 +28,7 @@ export default function NewsCategoryPage() {
       <h2 className="text-lg font-semibold text-capitalize">{category}</h2>
       <div className="news-category">
         <Suspense fallback={<NewsCategorySkeleton />}>
-          <Await resolve={response}>
+          <Await resolve={newsCategory}>
             {({ articles }) => (
               <React.Fragment>
                 {articles.map(({ title, author, urlToImage }, index) => (

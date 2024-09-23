@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Navigation } from "./ui/Navigation";
 import { Button } from "../../ui/button/Button";
@@ -34,6 +34,7 @@ export default function RootPage() {
 
   return (
     <React.Fragment>
+      <ScrollRestoration />
       <TopBar />
       <div className="container">
         <header className="header">

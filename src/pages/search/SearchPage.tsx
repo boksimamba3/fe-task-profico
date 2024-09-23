@@ -16,7 +16,7 @@ function SearchSkeleton() {
 
 export default function SearchPage() {
   const navigation = useNavigation();
-  const { response } = useLoaderData();
+  const { searchResults } = useLoaderData();
 
   if (navigation.state === "loading") {
     return (
@@ -29,7 +29,7 @@ export default function SearchPage() {
   return (
     <section className="search-results">
       <Suspense fallback={<SearchSkeleton />}>
-        <Await resolve={response}>
+        <Await resolve={searchResults}>
           {({ articles }) => (
             <React.Fragment>
               {articles.map(({ title, author, urlToImage }, index) => (

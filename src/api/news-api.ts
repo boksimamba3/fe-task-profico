@@ -6,7 +6,7 @@ export interface NewsAPIRequestBase {
 }
 
 export interface NewsAPIRequestTopHeadlines extends NewsAPIRequestBase {
-  category: string;
+  category?: string;
 }
 
 export interface NewsAPIRequestEverything extends NewsAPIRequestBase {
@@ -35,16 +35,19 @@ export class NewsAPIError extends Error {
 }
 
 class NewsAPI {
-  private readonly apiKey = "4c269f36c81747c29c913fd196d19ffb";
+  private readonly apiKey = "e6e2081592c34785a1e045eb7046fa7d";
 
   async topHeadlines(request: NewsAPIRequestTopHeadlines, requestInit?: RequestInit): Promise<NewsAPIResponse> {
-    const { category, language = "en", pageSize = 30, page = 1 } = request;
+    const { category, language = "en", pageSize = 100, page = 1 } = request;
     const url = new URL("https://newsapi.org/v2/top-headlines");
     url.searchParams.append("language", language);
-    url.searchParams.append("category", category);
     url.searchParams.append("pageSize", pageSize.toString());
     url.searchParams.append("page", page.toString());
     url.searchParams.append("apiKey", this.apiKey);
+
+    if (category) {
+      url.searchParams.append("category", category);
+    }
 
     const response = await fetch(url.toString(), requestInit);
 
@@ -56,7 +59,7 @@ class NewsAPI {
   }
 
   async everything(request: NewsAPIRequestEverything, requestInit?: RequestInit): Promise<NewsAPIResponse> {
-    const { q, language = "en", pageSize = 30, page = 1, searchIn = "title", sortBy = "publishedAt" } = request;
+    const { q, language = "en", pageSize = 10, page = 1, searchIn = "title", sortBy = "popularity" } = request;
     const url = new URL("https://newsapi.org/v2/everything");
     url.searchParams.append("language", language);
     url.searchParams.append("pageSize", pageSize.toString());
