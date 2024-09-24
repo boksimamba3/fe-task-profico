@@ -2,6 +2,43 @@
   display: grid;
   grid-template-columns: 1fr minmax(300px, 725px) 1fr;
   margin-top: 36px;
+  grid-template-areas: "title search mobile-menu";
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr minmax(150px, 725px) 1fr;
+    grid-template-areas:
+      "title mobile-menu"
+      "search search";
+    margin-top: 24px;
+    row-gap: 24px;
+  }
+
+  &__title {
+    grid-area: title;
+
+    h1 {
+      font-size: 32px;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &__search {
+    grid-area: search;
+  }
+
+  &__menu {
+    grid-area: mobile-menu;
+    margin-left: auto;
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
 }
 
 .content {

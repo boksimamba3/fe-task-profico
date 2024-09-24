@@ -6,6 +6,10 @@
   background-color: var(--color-light);
   max-height: 100%;
 
+  @media screen and (max-width: 1024px) {
+    grid-area: 1 / 2 / 3 / 3;
+  }
+
   &__header {
     display: flex;
     align-items: center;

@@ -19,7 +19,9 @@ export function SearchBox({ query, onQueryChange }: SearchBoxProps) {
         onChange={onQueryChange}
         placeholder="Search News"
       />
-      <Button color="primary">SEARCH</Button>
+      <Button className={`${classes.searchbox__btn}`} color="primary">
+        SEARCH
+      </Button>
     </div>
   );
 }

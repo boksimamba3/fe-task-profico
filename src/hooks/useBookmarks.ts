@@ -22,7 +22,7 @@ export function useBookmarks(): {
       if (exists) {
         setBookmarks((bookmarks) => bookmarks.filter((bookmark) => bookmark.hash !== hash));
       } else {
-        setBookmarks((bookmarks) => [...bookmarks, { ...article, hash }]);
+        setBookmarks((bookmarks) => [{ ...article, hash }, ...bookmarks]);
       }
     },
     [bookmarks, setBookmarks],

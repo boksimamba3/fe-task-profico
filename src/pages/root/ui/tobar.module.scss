@@ -1,5 +1,10 @@
 .topbar {
   background: linear-gradient(180deg, #bb1e1e 71.29%, #b21919 99.95%);
+  padding: 0 16px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   &__inner {
     display: flex;
