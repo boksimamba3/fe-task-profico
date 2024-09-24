@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { Fragment, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { Outlet, ScrollRestoration, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Navigation } from "./ui/Navigation";
@@ -16,7 +16,7 @@ export default function RootPage() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const [query, setQuery] = React.useState(searchParams.get("q") || "");
+  const [query, setQuery] = useState(searchParams.get("q") || "");
 
   useEffect(() => {
     if (location.pathname !== "/search") {
@@ -24,11 +24,11 @@ export default function RootPage() {
     }
   }, [location]);
 
-  function onQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onQueryChange(event: ChangeEvent<HTMLInputElement>) {
     setQuery(event.target.value);
   }
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+  function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!query) return;
 
@@ -37,7 +37,7 @@ export default function RootPage() {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <ScrollRestoration />
       <TopBar />
       <div className="container px-4">
@@ -71,6 +71,6 @@ export default function RootPage() {
           <Outlet />
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 }

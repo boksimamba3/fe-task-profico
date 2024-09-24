@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { Button } from "../../../ui/button/Button";
 import { SearchIcon } from "../../../ui/icon/Icon";
 
@@ -5,7 +6,7 @@ import classes from "./search-box.module.scss";
 
 export interface SearchBoxProps {
   query: string;
-  onQueryChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onQueryChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function SearchBox({ query, onQueryChange }: SearchBoxProps) {

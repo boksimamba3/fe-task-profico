@@ -1,4 +1,6 @@
-export function HomeIcon(props: React.SVGProps<SVGSVGElement>) {
+import { SVGProps } from "react";
+
+export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -11,7 +13,7 @@ export function HomeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function NewsIcon(props: React.SVGProps<SVGSVGElement>) {
+export function NewsIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -24,7 +26,7 @@ export function NewsIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function BusinessIcon(props: React.SVGProps<SVGSVGElement>) {
+export function BusinessIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -37,7 +39,7 @@ export function BusinessIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function SportsIcon(props: React.SVGProps<SVGSVGElement>) {
+export function SportsIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -50,7 +52,7 @@ export function SportsIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
+export function SearchIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -63,7 +65,7 @@ export function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function HealthIcon(props: React.SVGProps<SVGSVGElement>) {
+export function HealthIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -82,7 +84,7 @@ export function HealthIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function ScienceIcon(props: React.SVGProps<SVGSVGElement>) {
+export function ScienceIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -95,7 +97,7 @@ export function ScienceIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function TechnologyIcon(props: React.SVGProps<SVGSVGElement>) {
+export function TechnologyIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -108,7 +110,7 @@ export function TechnologyIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function FlashingCircleIcon(props: React.SVGProps<SVGSVGElement>) {
+export function FlashingCircleIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <g fill="currentColor" opacity={0.24}>
@@ -121,7 +123,7 @@ export function FlashingCircleIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function BookmarkIcon(props: React.SVGProps<SVGSVGElement>) {
+export function BookmarkIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} width="20" height="20" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
       <path

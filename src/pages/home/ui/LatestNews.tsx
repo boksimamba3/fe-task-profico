@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 
 import { FlashingCircleIcon } from "../../../ui/icon/Icon";
 import { Card, CardBody } from "../../../ui/card/Card";
@@ -52,7 +52,7 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
       </div>
       <div ref={rootRef} className={`${classes.news__body} pt4`}>
         {articles.map(({ title, publishedAt }, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <Card key={index}>
               <CardBody className={index === 0 ? "pt-0" : ""}>
                 <span className="text-xs text-secondary font-bold">{formatDateToHoursAndMinutes(publishedAt)}</span>
@@ -60,7 +60,7 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
               </CardBody>
             </Card>
             <Divider className="text-light-2" />
-          </React.Fragment>
+          </Fragment>
         ))}
         {hasNextPage && <div ref={trackerRef}></div>}
       </div>

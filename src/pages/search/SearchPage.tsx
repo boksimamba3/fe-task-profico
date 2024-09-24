@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense, Fragment } from "react";
 import { Await, useLoaderData, useNavigation } from "react-router-dom";
 
 import { Skeleton } from "../../ui/skeleton/Skeleton";
@@ -10,11 +10,11 @@ import classes from "./search.module.scss";
 
 function SearchSkeleton() {
   return (
-    <React.Fragment>
+    <Fragment>
       {Array.from({ length: 12 }, (_, index) => (
         <Skeleton key={index} style={{ height: "100%" }} />
       ))}
-    </React.Fragment>
+    </Fragment>
   );
 }
 
@@ -36,7 +36,7 @@ export default function SearchPage() {
       <Suspense fallback={<SearchSkeleton />}>
         <Await resolve={searchResults}>
           {({ articles }) => (
-            <React.Fragment>
+            <Fragment>
               {articles.map((article, index) => (
                 <Card key={index} className="fade-in">
                   <CardImage
@@ -54,7 +54,7 @@ export default function SearchPage() {
                   </CardFooter>
                 </Card>
               ))}
-            </React.Fragment>
+            </Fragment>
           )}
         </Await>
       </Suspense>

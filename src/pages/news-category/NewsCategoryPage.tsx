@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import { Suspense, Fragment } from "react";
 import { Await, UIMatch, useLoaderData, useLocation, useMatches, useRevalidator } from "react-router-dom";
 
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
@@ -11,11 +11,11 @@ import { NewsAPIArticle } from "../../api/news-api";
 
 function NewsCategorySkeleton() {
   return (
-    <React.Fragment>
+    <Fragment>
       {Array.from({ length: 12 }, (_, index) => (
         <Skeleton key={index} style={{ height: "100%" }} />
       ))}
-    </React.Fragment>
+    </Fragment>
   );
 }
 
@@ -46,7 +46,7 @@ export default function NewsCategoryPage() {
         <Suspense fallback={<NewsCategorySkeleton />}>
           <Await resolve={newsCategory}>
             {({ articles }) => (
-              <React.Fragment>
+              <Fragment>
                 {articles.map((article, index) => (
                   <Card key={index} className="fade-in">
                     <CardImage
@@ -64,7 +64,7 @@ export default function NewsCategoryPage() {
                     </CardFooter>
                   </Card>
                 ))}
-              </React.Fragment>
+              </Fragment>
             )}
           </Await>
         </Suspense>
