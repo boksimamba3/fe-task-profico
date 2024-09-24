@@ -4,8 +4,12 @@ import { Await, Link, useLoaderData } from "react-router-dom";
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 import { LatestNews } from "./ui/LatestNews";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
+import { hashCode } from "../../utils/hash-code";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import classes from "./home.module.scss";
+import { BookmarkIcon } from "../../ui/icon/Icon";
+import { useBookmarks } from "../../hooks/useBookmarks";
 
 function HomeSkeleton() {
   return (
@@ -20,6 +24,7 @@ function HomeSkeleton() {
 
 export default function HomePage() {
   const { news } = useLoaderData();
+  const [isBookmarked, toggleBookmark] = useBookmarks();
 
   return (
     <main className={`${classes.news}`}>
@@ -44,6 +49,9 @@ export default function HomePage() {
                         </CardBody>
                         <CardFooter>
                           <p className="text-sm text-dark-2">{author}</p>
+                          <div className={classes.bookmark} onClick={() => toggleBookmark(title)}>
+                            <BookmarkIcon className={`${isBookmarked(title) ? "text-primary" : "text-gray"}`} />
+                          </div>
                         </CardFooter>
                       </Card>
                     ))}

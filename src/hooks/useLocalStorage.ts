@@ -6,11 +6,13 @@ function getLocalStorageItem(key: string): string | null {
 
 function removeLocalStorageItem(key: string): void {
   window.localStorage.removeItem(key);
+  window.dispatchEvent(new StorageEvent("storage", { key, newValue: null }));
 }
 
 function setLocalStorageItem(key: string, value: unknown): void {
-  const stringifiedValue = JSON.stringify(value);
-  window.localStorage.setItem(key, stringifiedValue);
+  const valueAsString = JSON.stringify(value);
+  window.localStorage.setItem(key, valueAsString);
+  window.dispatchEvent(new StorageEvent("storage", { key, newValue: valueAsString }));
 }
 
 function localStorageSubscribe(callback: () => void) {
@@ -18,7 +20,11 @@ function localStorageSubscribe(callback: () => void) {
   return () => window.removeEventListener("storage", callback);
 }
 
-export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+function isFunction(x: unknown) {
+  return typeof x === "function";
+}
+
+export function useLocalStorage<T>(key: string, initialValue: T): [T, (v: T | ((value: T) => T)) => void] {
   const store = useSyncExternalStore(
     localStorageSubscribe,
     () => getLocalStorageItem(key),
@@ -27,10 +33,10 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
     },
   );
 
-  const setState = useCallback<(value: T) => void>(
-    (v) => {
+  const setState = useCallback(
+    (v: T | ((value: T) => T)) => {
       try {
-        const nextState = typeof v === "function" ? v(JSON.parse(store!)) : v;
+        const nextState = isFunction(v) ? v(JSON.parse(store!)) : v;
 
         if (nextState === undefined || nextState === null) {
           removeLocalStorageItem(key);

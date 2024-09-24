@@ -35,7 +35,7 @@ export class NewsAPIError extends Error {
 }
 
 class NewsAPI {
-  private readonly apiKey = "08362d20d83d41f2a922a43db96ed9ed";
+  private readonly apiKey = "4c269f36c81747c29c913fd196d19ffb";
 
   async topHeadlines(request: NewsAPIRequestTopHeadlines, requestInit?: RequestInit): Promise<NewsAPIResponse> {
     const { category, language = "en", pageSize = 100, page = 1 } = request;
