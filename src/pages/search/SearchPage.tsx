@@ -3,6 +3,8 @@ import { Await, useLoaderData, useNavigation } from "react-router-dom";
 
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
+import { BookmarkIcon } from "../../ui/icon/Icon";
+import { useBookmarks } from "../../hooks/useBookmarks";
 
 import classes from "./search.module.scss";
 
@@ -19,6 +21,7 @@ function SearchSkeleton() {
 export default function SearchPage() {
   const navigation = useNavigation();
   const { searchResults } = useLoaderData();
+  const [isBookmarked, toggleBookmark] = useBookmarks();
 
   if (navigation.state === "loading") {
     return (
@@ -42,6 +45,9 @@ export default function SearchPage() {
                   </CardBody>
                   <CardFooter>
                     <p className="text-sm text-dark-2">{author}</p>
+                    <div className={classes.bookmark} onClick={() => toggleBookmark(title)}>
+                      <BookmarkIcon className={`${isBookmarked(title) ? "text-primary" : "text-gray"}`} />
+                    </div>
                   </CardFooter>
                 </Card>
               ))}
