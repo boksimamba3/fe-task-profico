@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { Outlet, ScrollRestoration, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Navigation } from "./ui/Navigation";
-import { Button } from "../../ui/button/Button";
-import { SearchIcon } from "../../ui/icon/Icon";
 import { Divider } from "../../ui/divider/Divider";
 import { TopBar } from "./ui/TopBar";
+import { SearchBox } from "./ui/SearchBox";
+
+import classes from "./root.module.scss";
 
 export default function RootPage() {
   const location = useLocation();
@@ -37,7 +38,7 @@ export default function RootPage() {
       <ScrollRestoration />
       <TopBar />
       <div className="container">
-        <header className="header">
+        <header className={`${classes.header}`}>
           <div>
             <h1 className="text-xxl font-black">
               <span className="text-primary">My</span>News
@@ -45,17 +46,7 @@ export default function RootPage() {
           </div>
 
           <form onSubmit={handleSearch}>
-            <div className="search-box">
-              <SearchIcon className="search-box__icon" />
-              <input
-                className="search-box__input"
-                type="search"
-                value={query}
-                onChange={onQueryChange}
-                placeholder="Search News"
-              />
-              <Button color="primary">SEARCH</Button>
-            </div>
+            <SearchBox query={query} onQueryChange={onQueryChange} />
           </form>
 
           <div className="mobile-navigation"></div>
@@ -63,7 +54,7 @@ export default function RootPage() {
 
         <Divider className="text-gray mt-7 opacity-10" />
 
-        <div className="content mt-6 pb-15">
+        <div className={`${classes.content} mt-6 pb-15`}>
           <Navigation />
           <Outlet />
         </div>

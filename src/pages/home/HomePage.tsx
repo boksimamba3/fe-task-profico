@@ -5,6 +5,8 @@ import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 import { LatestNews } from "./ui/LatestNews";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 
+import classes from "./home.module.scss";
+
 function HomeSkeleton() {
   return (
     <section className="news-category mb-10">
@@ -20,7 +22,7 @@ export default function HomePage() {
   const { news } = useLoaderData();
 
   return (
-    <main className="news">
+    <main className={`${classes.news}`}>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={news}>
           {([newsCategory, latestNews]) => (
@@ -30,7 +32,7 @@ export default function HomePage() {
                   <Link to={category} className="text-dark text-lg font-semibold text-capitalize">
                     {category}
                   </Link>
-                  <section className="news-category mb-10">
+                  <section className={`${classes.news__category} mb-10`}>
                     {articles.map(({ title, author, urlToImage }, index) => (
                       <Card key={index} className="fade-in">
                         <CardImage

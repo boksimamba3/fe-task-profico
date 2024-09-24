@@ -1,0 +1,9 @@
+.topbar {
+  background: linear-gradient(180deg, #bb1e1e 71.29%, #b21919 99.95%);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    height: 60px;
+  }
+}

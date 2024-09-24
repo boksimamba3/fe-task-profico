@@ -7,6 +7,8 @@ import NewsAPI, { NewsAPIArticle } from "../../../api/news-api";
 import { formatDateToHoursAndMinutes } from "../../../utils/format-date";
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 
+import classes from "./latest-news.module.scss";
+
 export interface LatestNewsProps {
   initialArticles: NewsAPIArticle[];
   totalItems: number;
@@ -43,12 +45,12 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
   const hasNextPage = page * pageSize < totalItems;
 
   return (
-    <div className="latest-news">
-      <div className="latest-news__header">
+    <div className={`${classes.news}`}>
+      <div className={`${classes.news__header}`}>
         <FlashingCircleIcon className="text-primary" />
         <h2 className="text-default font-medium ml-3 mb-4">Latest news</h2>
       </div>
-      <div ref={rootRef} className="latest-news__body pt-4">
+      <div ref={rootRef} className={`${classes.news__body} pt4`}>
         {articles.map(({ title, publishedAt }, index) => (
           <React.Fragment key={index}>
             <Card key={index}>
@@ -62,7 +64,7 @@ export function LatestNews({ initialArticles, totalItems }: LatestNewsProps) {
         ))}
         {hasNextPage && <div ref={trackerRef}></div>}
       </div>
-      <div className="latest-news__footer p-4">
+      <div className={`${classes.news__footer} p-4`}>
         <a href="#" className="text-secondary text-md font-medium">
           See All News
         </a>

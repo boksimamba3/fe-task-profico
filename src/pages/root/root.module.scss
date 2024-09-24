@@ -1,0 +1,11 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 725px) 1fr;
+  margin-top: 36px;
+}
+
+.content {
+  display: flex;
+  gap: 25px;
+  padding-bottom: 60px;
+}

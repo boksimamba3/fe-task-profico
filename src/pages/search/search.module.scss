@@ -1,0 +1,8 @@
+.news {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 252px;
+  gap: 22px 22px;
+  width: 100%;
+  margin-top: 16px;
+}

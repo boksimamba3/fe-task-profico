@@ -4,6 +4,8 @@ import { Await, useLoaderData, useNavigation } from "react-router-dom";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 
+import classes from "./search.module.scss";
+
 function SearchSkeleton() {
   return (
     <React.Fragment>
@@ -20,14 +22,14 @@ export default function SearchPage() {
 
   if (navigation.state === "loading") {
     return (
-      <section className="search-results">
+      <section className={`${classes.news}`}>
         <SearchSkeleton />;
       </section>
     );
   }
 
   return (
-    <section className="search-results">
+    <section className={`${classes.news}`}>
       <Suspense fallback={<SearchSkeleton />}>
         <Await resolve={searchResults}>
           {({ articles }) => (

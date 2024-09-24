@@ -3,6 +3,8 @@ import { Await, UIMatch, useLoaderData, useMatches } from "react-router-dom";
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 
+import classes from "./news-category.module.scss";
+
 function NewsCategorySkeleton() {
   return (
     <React.Fragment>
@@ -24,9 +26,9 @@ export default function NewsCategoryPage() {
   const category = match?.handle.category ?? "";
 
   return (
-    <section className="news-section">
+    <section className={classes.news__section}>
       <h2 className="text-lg font-semibold text-capitalize">{category}</h2>
-      <div className="news-category">
+      <div className={classes.news__category}>
         <Suspense fallback={<NewsCategorySkeleton />}>
           <Await resolve={newsCategory}>
             {({ articles }) => (
