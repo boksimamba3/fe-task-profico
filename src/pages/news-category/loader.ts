@@ -3,7 +3,7 @@ import { defer } from "react-router-dom";
 import NewsAPI from "../../api/news-api";
 
 export function newsCategoryLoader(category: string) {
-  return function categoryLoader({ request }: { request: Request }) {
+  return function ({ request }: { request: Request }) {
     const newsCategory = NewsAPI.topHeadlines(
       { category: category },
       {
@@ -13,4 +13,10 @@ export function newsCategoryLoader(category: string) {
 
     return defer({ newsCategory });
   };
+}
+
+export function bookmarksLoader() {
+  const newsCategory = NewsAPI.bookmarks();
+
+  return defer({ newsCategory });
 }

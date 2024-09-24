@@ -10,7 +10,7 @@ import SearchPage from "./pages/search/SearchPage.tsx";
 import NotFoundPage from "./pages/not-found/NotFoundPage.tsx";
 import { homeLoader } from "./pages/home/loader.ts";
 import { searchLoader } from "./pages/search/loader.ts";
-import { newsCategoryLoader } from "./pages/news-category/loader.ts";
+import { bookmarksLoader, newsCategoryLoader } from "./pages/news-category/loader.ts";
 
 import "./index.scss";
 
@@ -72,6 +72,13 @@ const router = createBrowserRouter([
         element: <NewsCategoryPage />,
         handle: { category: "technology" },
         loader: newsCategoryLoader("technology"),
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "bookmarks",
+        element: <NewsCategoryPage />,
+        handle: { category: "bookmarks" },
+        loader: bookmarksLoader,
         errorElement: <ErrorPage />,
       },
       {

@@ -15,7 +15,6 @@ export interface NewsAPIRequestEverything extends NewsAPIRequestBase {
 }
 
 export interface NewsAPIResponse {
-  status: string;
   totalResults: number;
   articles: NewsAPIArticle[];
 }
@@ -79,6 +78,13 @@ class NewsAPI {
     }
 
     return response.json();
+  }
+
+  async bookmarks(): Promise<NewsAPIResponse> {
+    const bookmarks = window.localStorage.getItem("bookmarks");
+    const parsedBookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+
+    return Promise.resolve({ articles: parsedBookmarks, totalResults: parsedBookmarks.length });
   }
 }
 

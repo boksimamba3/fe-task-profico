@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
+  BookmarkIcon,
   BusinessIcon,
   HealthIcon,
   HomeIcon,
@@ -59,6 +60,12 @@ export function Navigation() {
           <NavLink className={applyNavLinkActiveClass} to="/technology">
             <TechnologyIcon />
             <span>Technology</span>
+          </NavLink>
+        </li>
+        <li className={`${classes.navigation__item}`}>
+          <NavLink className={applyNavLinkActiveClass} to="/bookmarks">
+            <BookmarkIcon />
+            <span>Bookmarks</span>
           </NavLink>
         </li>
       </ul>
