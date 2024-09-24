@@ -21,7 +21,7 @@ function NewsCategorySkeleton() {
 export default function NewsCategoryPage() {
   const matches = useMatches();
   const { newsCategory } = useLoaderData();
-  const [isBookmarked, toggleBookmark] = useBookmarks();
+  const { isBookmarked, toggleBookmark } = useBookmarks();
 
   const match = matches.find((match): match is UIMatch<unknown, { category: string }> =>
     Boolean(match.handle && typeof match.handle === "object" && "category" in match.handle),
@@ -37,16 +37,19 @@ export default function NewsCategoryPage() {
           <Await resolve={newsCategory}>
             {({ articles }) => (
               <React.Fragment>
-                {articles.map(({ title, author, urlToImage }, index) => (
+                {articles.map((article, index) => (
                   <Card key={index} className="fade-in">
-                    <CardImage src={urlToImage ?? "https://placehold.co/600x400?text=No+image"} alt="Article Image" />
+                    <CardImage
+                      src={article.urlToImage ?? "https://placehold.co/600x400?text=No+image"}
+                      alt="Article Image"
+                    />
                     <CardBody>
-                      <h3 className="text-default font-medium text-truncate">{title}</h3>
+                      <h3 className="text-default font-medium text-truncate">{article.title}</h3>
                     </CardBody>
                     <CardFooter>
-                      <p className="text-sm text-dark-2">{author}</p>
-                      <div className={classes.bookmark} onClick={() => toggleBookmark(title)}>
-                        <BookmarkIcon className={`${isBookmarked(title) ? "text-primary" : "text-gray"}`} />
+                      <p className="text-sm text-dark-2">{article.author}</p>
+                      <div className={classes.bookmark} onClick={() => toggleBookmark(article)}>
+                        <BookmarkIcon className={`${isBookmarked(article) ? "text-primary" : "text-gray"}`} />
                       </div>
                     </CardFooter>
                   </Card>

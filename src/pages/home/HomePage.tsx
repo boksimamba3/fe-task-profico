@@ -4,12 +4,10 @@ import { Await, Link, useLoaderData } from "react-router-dom";
 import { Card, CardBody, CardFooter, CardImage } from "../../ui/card/Card";
 import { LatestNews } from "./ui/LatestNews";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
-import { hashCode } from "../../utils/hash-code";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-
-import classes from "./home.module.scss";
 import { BookmarkIcon } from "../../ui/icon/Icon";
 import { useBookmarks } from "../../hooks/useBookmarks";
+
+import classes from "./home.module.scss";
 
 function HomeSkeleton() {
   return (
@@ -24,7 +22,7 @@ function HomeSkeleton() {
 
 export default function HomePage() {
   const { news } = useLoaderData();
-  const [isBookmarked, toggleBookmark] = useBookmarks();
+  const { toggleBookmark, isBookmarked } = useBookmarks();
 
   return (
     <main className={`${classes.news}`}>
@@ -38,19 +36,19 @@ export default function HomePage() {
                     {category}
                   </Link>
                   <section className={`${classes.news__category} mb-10`}>
-                    {articles.map(({ title, author, urlToImage }, index) => (
+                    {articles.map((article, index) => (
                       <Card key={index} className="fade-in">
                         <CardImage
-                          src={urlToImage ?? "https://placehold.co/600x400?text=No+image"}
+                          src={article.urlToImage ?? "https://placehold.co/600x400?text=No+image"}
                           alt="Article Image"
                         />
                         <CardBody>
-                          <h3 className="text-default font-medium text-truncate">{title}</h3>
+                          <h3 className="text-default font-medium text-truncate">{article.title}</h3>
                         </CardBody>
                         <CardFooter>
-                          <p className="text-sm text-dark-2">{author}</p>
-                          <div className={classes.bookmark} onClick={() => toggleBookmark(title)}>
-                            <BookmarkIcon className={`${isBookmarked(title) ? "text-primary" : "text-gray"}`} />
+                          <p className="text-sm text-dark-2">{article.author}</p>
+                          <div className={classes.bookmark} onClick={() => toggleBookmark(article)}>
+                            <BookmarkIcon className={`${isBookmarked(article) ? "text-primary" : "text-gray"}`} />
                           </div>
                         </CardFooter>
                       </Card>

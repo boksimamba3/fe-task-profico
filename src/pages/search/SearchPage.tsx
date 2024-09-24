@@ -21,7 +21,7 @@ function SearchSkeleton() {
 export default function SearchPage() {
   const navigation = useNavigation();
   const { searchResults } = useLoaderData();
-  const [isBookmarked, toggleBookmark] = useBookmarks();
+  const { isBookmarked, toggleBookmark } = useBookmarks();
 
   if (navigation.state === "loading") {
     return (
@@ -37,16 +37,19 @@ export default function SearchPage() {
         <Await resolve={searchResults}>
           {({ articles }) => (
             <React.Fragment>
-              {articles.map(({ title, author, urlToImage }, index) => (
+              {articles.map((article, index) => (
                 <Card key={index} className="fade-in">
-                  <CardImage src={urlToImage ?? "https://placehold.co/600x400?text=No+image"} alt="Article Image" />
+                  <CardImage
+                    src={article.urlToImage ?? "https://placehold.co/600x400?text=No+image"}
+                    alt="Article Image"
+                  />
                   <CardBody>
-                    <h3 className="text-default font-medium text-truncate">{title}</h3>
+                    <h3 className="text-default font-medium text-truncate">{article.title}</h3>
                   </CardBody>
                   <CardFooter>
-                    <p className="text-sm text-dark-2">{author}</p>
-                    <div className={classes.bookmark} onClick={() => toggleBookmark(title)}>
-                      <BookmarkIcon className={`${isBookmarked(title) ? "text-primary" : "text-gray"}`} />
+                    <p className="text-sm text-dark-2">{article.author}</p>
+                    <div className={classes.bookmark} onClick={() => toggleBookmark(article)}>
+                      <BookmarkIcon className={`${isBookmarked(article) ? "text-primary" : "text-gray"}`} />
                     </div>
                   </CardFooter>
                 </Card>
